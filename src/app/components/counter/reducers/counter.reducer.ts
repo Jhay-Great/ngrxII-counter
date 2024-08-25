@@ -5,12 +5,7 @@ import { increment, decrement, reset, setCounter, counterActions } from "../acti
 // defining the shape of the state
 export type counterType = number ;
 
-// interface counterInterface {
-//     counter: number,
-// }
-
 // setting the initial state
-// const initialValue:counterType = 0;
 let DEFAULT = 0;
 const initial:counterType = Number(localStorage.getItem('counter')) ?? 0;
 
@@ -25,5 +20,4 @@ export const _counterReducer = createReducer(
 
 export function reducers(state:counterType | undefined, action:counterActions): counterType {
     return _counterReducer(state, action)
-    // return counterReducer(state ?? 0, action as counterActions)
 }
