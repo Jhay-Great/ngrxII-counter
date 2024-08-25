@@ -11,6 +11,7 @@ export type counterType = number ;
 
 // setting the initial state
 // const initialValue:counterType = 0;
+let DEFAULT = 0;
 const initial:counterType = Number(localStorage.getItem('counter')) ?? 0;
 
 export const _counterReducer = createReducer(
@@ -18,8 +19,8 @@ export const _counterReducer = createReducer(
     initial,
     on(increment, (state:number, {interval}):counterType => state + interval),
     on(decrement, (state:number, {interval}):counterType => state > 0 ? state - interval : 0),
-    on(reset, ():counterType => 0),
-    on(setCounter, (state, {counter}) => counter),
+    on(reset, ():counterType => DEFAULT),
+    on(setCounter, (state, {counter}) => (DEFAULT = counter, counter)),
 )
 
 export function reducers(state:counterType | undefined, action:counterActions): counterType {
